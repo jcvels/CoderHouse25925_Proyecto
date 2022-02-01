@@ -1,4 +1,4 @@
-import AppNavbar from './components/NavBar' 
+import AppNavbar from './components/Navbar' 
 
 function App() {
   return (
