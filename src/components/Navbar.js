@@ -1,6 +1,15 @@
-import { Navbar, Nav, NavbarBrand, NavItem, NavLink, Button, Collapse, NavbarToggler } from 'reactstrap';
+import { Navbar, Nav, NavbarBrand, NavItem, Button, Collapse, NavbarToggler } from 'reactstrap';
+import CategorieItemButton from './CategorieItemButton';
+import CartWidget from './CartWidget';
 
-function AppNavbar() {
+function AppNavbar({title}) {
+
+    const handleClickJets = () => { console.log('Jets') }
+    const handleClickPropellers = () => { console.log('Propellers') }
+    const handleClickAnphibian = () => { console.log('Anphibian') }
+    const handleClickSprayer = () => { console.log('Sprayer') }
+    const handleClickCart = () => { console.log('CartButton') }
+
     return (
         <Navbar
             color="warning"
@@ -9,38 +18,25 @@ function AppNavbar() {
             fixed="top"
         >
             <NavbarBrand href="/">
-                <img src={'./avion.svg'} width={50} alt='Logo de la aplicación' style={{display:'inline'}} />
-                <h5 style={{display:'inline'}} >Best-Planes-On-Sale</h5>
+                <img src={'./avion.svg'} width={60} alt='Logo de la aplicación' style={{display:'inline'}} />
+                <h1 className='lead' style={{display:'inline'}} >{title}</h1>
             </NavbarBrand>
 
             <NavbarToggler /> { /* TODO: agregar metodo onClick para funcionalidad 'Collapse' */ }
                 <Collapse navbar>
                     <Nav 
-                        className="ms-auto me-auto"
+                        className="ms-5 me-auto"
                         navbar
                     >
-                        <NavItem>
-                            <NavLink href="/">Jets</NavLink>
-                        </NavItem>
-
-                        <NavItem>
-                            <NavLink href="/">Propellers</NavLink>
-                        </NavItem>
-
-                        <NavItem>
-                            <NavLink href="/">Anphibian</NavLink>
-                        </NavItem>
-
-                        <NavItem>
-                            <NavLink href="/">Sprayer</NavLink>
-                        </NavItem>
-
-                        <NavItem>
-                            <NavLink href="/">More...</NavLink>
-                        </NavItem>
+                        
+                        <CategorieItemButton label="Jets" handleClick={handleClickJets} />
+                        <CategorieItemButton label="Propellers" backgroundColor="success" handleClick={handleClickPropellers} />
+                        <CategorieItemButton label="Anphibian" handleClick={handleClickAnphibian} />
+                        <CategorieItemButton label="Sprayer" handleClick={handleClickSprayer} />
 
                     </Nav>
-                    <Nav navbar>
+
+                    {/*<Nav navbar>
                         <NavItem>
                             <Button color="primary" className='ms-1'>
                                 Log-In
@@ -49,8 +45,12 @@ function AppNavbar() {
                                 Sign-In
                             </Button>
                         </NavItem>
-                    </Nav>
+                    </Nav> */}
+
                 </Collapse>
+
+                <CartWidget itemOnCart={0} handleClick={handleClickCart}/>
+
         </Navbar>
     );
 }

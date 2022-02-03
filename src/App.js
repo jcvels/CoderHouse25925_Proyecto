@@ -1,10 +1,14 @@
-import AppNavbar from './components/Navbar' 
+import AppNavbar from './components/Navbar';
+import ItemListContainer from './components/ItemListContainer';
+
+const hightlitherCategories = ["Jets","Propellers","Anphibian","Sprayer"];
 
 function App() {
   return (
-    // App's Navbar.
-    // Para evitar confusion con el componente Navbar de la biblioteca de estilos llamo a la funcion del componente 'AppNavbar'. 
-    <AppNavbar />
+    <>
+      <AppNavbar title='Best-Planes-On-Sale' color='red' categories={hightlitherCategories} />
+      <ItemListContainer title={'Desafio Clase IV: Componentes I'} comment={'Yes, I liked yellow :)'}/>
+    </>
   );
 }
 
