@@ -1,14 +1,19 @@
+import { useState } from 'react';
 import { Navbar, Nav, NavbarBrand, NavItem, Button, Collapse, NavbarToggler } from 'reactstrap';
 import CategorieItemButton from './CategorieItemButton';
 import CartWidget from './CartWidget';
 
 function AppNavbar({title}) {
+    const handleClickJets = () => { console.log('Jets'); menuStateChanger(); }
+    const handleClickPropellers = () => { console.log('Propellers'); menuStateChanger();  }
+    const handleClickAnphibian = () => { console.log('Anphibian'); menuStateChanger(); }
+    const handleClickSprayer = () => { console.log('Sprayer'); menuStateChanger(); }
+    const handleClickCart = () => { console.log('CartButton'); menuStateChanger(); }
 
-    const handleClickJets = () => { console.log('Jets') }
-    const handleClickPropellers = () => { console.log('Propellers') }
-    const handleClickAnphibian = () => { console.log('Anphibian') }
-    const handleClickSprayer = () => { console.log('Sprayer') }
-    const handleClickCart = () => { console.log('CartButton') }
+    const [ menuState, setMenuState] = useState(false);
+    function menuStateChanger() {
+        menuState ? setMenuState(false) : setMenuState(true);
+    }
 
     return (
         <Navbar
@@ -22,35 +27,34 @@ function AppNavbar({title}) {
                 <h1 className='lead' style={{display:'inline'}} >{title}</h1>
             </NavbarBrand>
 
-            <NavbarToggler /> { /* TODO: agregar metodo onClick para funcionalidad 'Collapse' */ }
-                <Collapse navbar>
-                    <Nav 
-                        className="ms-5 me-auto"
-                        navbar
-                    >
-                        
-                        <CategorieItemButton label="Jets" handleClick={handleClickJets} />
-                        <CategorieItemButton label="Propellers" backgroundColor="success" handleClick={handleClickPropellers} />
-                        <CategorieItemButton label="Anphibian" handleClick={handleClickAnphibian} />
-                        <CategorieItemButton label="Sprayer" handleClick={handleClickSprayer} />
+            <NavbarToggler onClick={menuStateChanger} /> { /* TODO: agregar metodo onClick para funcionalidad 'Collapse' */ }
+            <Collapse navbar isOpen={menuState} >
+                <Nav 
+                    className="ms-5 me-auto"
+                    navbar
+                >
+                    
+                    <CategorieItemButton label="Jets" handleClick={handleClickJets} />
+                    <CategorieItemButton label="Propellers" backgroundColor="success" handleClick={handleClickPropellers} />
+                    <CategorieItemButton label="Anphibian" handleClick={handleClickAnphibian} />
+                    <CategorieItemButton label="Sprayer" handleClick={handleClickSprayer} />
 
-                    </Nav>
+                </Nav>
 
-                    {/*<Nav navbar>
-                        <NavItem>
-                            <Button color="primary" className='ms-1'>
-                                Log-In
-                            </Button>
-                            <Button color="light" className='ms-1'>
-                                Sign-In
-                            </Button>
-                        </NavItem>
-                    </Nav> */}
+                <hr></hr>
 
-                </Collapse>
-
-                <CartWidget itemOnCart={0} handleClick={handleClickCart}/>
-
+                <Nav navbar className='ms-2 me-2 mt-2'>
+                    <NavItem>
+                        <Button color="primary" className='ms-1'>
+                            Log-In
+                        </Button>
+                        <Button color="light" className='ms-1'>
+                            Sign-In
+                        </Button>
+                        <CartWidget itemOnCart={0} handleClick={handleClickCart}/>
+                    </NavItem>
+                </Nav>
+            </Collapse>
         </Navbar>
     );
 }
