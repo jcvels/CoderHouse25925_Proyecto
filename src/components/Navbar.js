@@ -4,14 +4,15 @@ import CategorieItemButton from './CategorieItemButton';
 import CartWidget from './CartWidget';
 
 function AppNavbar({title}) {
-    const handleClickJets = () => { console.log('Jets'); menuStateChanger(); }
-    const handleClickPropellers = () => { console.log('Propellers'); menuStateChanger();  }
-    const handleClickAnphibian = () => { console.log('Anphibian'); menuStateChanger(); }
-    const handleClickSprayer = () => { console.log('Sprayer'); menuStateChanger(); }
-    const handleClickCart = () => { console.log('CartButton'); menuStateChanger(); }
+    const handleClickJets = () => { console.log('JetsButton'); }
+    const handleClickPropellers = () => { console.log('PropellersButton'); }
+    const handleClickAnphibian = () => { console.log('AnphibianButton'); }
+    const handleClickSprayer = () => { console.log('SprayerButton'); }
+    const handleClickCart = () => { console.log('CartButton'); }
 
     const [ menuState, setMenuState] = useState(false);
-    function menuStateChanger() {
+    
+    const menuStateChanger = () => {
         menuState ? setMenuState(false) : setMenuState(true);
     }
 
