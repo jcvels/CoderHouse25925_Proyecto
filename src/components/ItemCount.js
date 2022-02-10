@@ -28,7 +28,7 @@ function ItemCount({ itemCounterStart=0, itemStock=0, itemOnAdd }) {
             />
             
             <Button
-                className='btn-warning'
+                color='warning'
                 disabled={ itemStock > 0 ? false : true }
                 onClick={addToCart}
                 children={itemStock > 0 ? "ADD " + itemCounter + " TO CART" : "OUT OF STOCK" }

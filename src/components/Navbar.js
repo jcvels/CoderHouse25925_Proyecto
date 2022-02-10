@@ -42,8 +42,6 @@ function AppNavbar({title}) {
 
                 </Nav>
 
-                <hr></hr>
-
                 <Nav navbar className='ms-2 me-2 mt-2'>
                     <NavItem>
                         <Button color="primary" className='ms-1'>

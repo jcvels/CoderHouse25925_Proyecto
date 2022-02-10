@@ -6,8 +6,8 @@ const hightlitherCategories = ["Jets","Propellers","Anphibian","Sprayer"];
 function App() {
   return (
     <>
-      <AppNavbar title='Best-Planes-On-Sale' color='red' categories={hightlitherCategories} />
-      <ItemListContainer title={'Desafio Clase V: Componentes II'} comment={'Yes, I liked yellow :)'}/>
+      <AppNavbar title='Best-Planes-On-Sale' categories={hightlitherCategories} />
+      <ItemListContainer title={'Desafio Clase VI'} comment={'Catálogo con MAPS y Promises'}/>
     </>
   );
 }
