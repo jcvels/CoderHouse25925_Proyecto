@@ -18,7 +18,7 @@ function ItemCount({ itemCounterStart=0, itemStock=0, itemOnAdd }) {
     }
     
     return (
-        <ButtonGroup>
+        <ButtonGroup className='w-100 my-1'>
 
             <Button 
                 style={{width:40}}
@@ -32,6 +32,7 @@ function ItemCount({ itemCounterStart=0, itemStock=0, itemOnAdd }) {
                 disabled={ itemStock > 0 ? false : true }
                 onClick={addToCart}
                 children={itemStock > 0 ? "ADD " + itemCounter + " TO CART" : "OUT OF STOCK" }
+                block
             />
 
             <Button
