@@ -26,23 +26,21 @@ function ItemListContainer({title, comment}) {
     };
 
     return (
-        <Container fluid className='my-5 p-2'>
-            <Container className='mt-5 p-5 rounded border border-warning text-center'>
-                <h1 className='display-4'>{title}</h1>
-                <p className='lead mt-3'>{comment}</p>
+        <section className='container p-5 rounded border border-warning text-center' style={{marginTop:100}}>
+            <h1 className='display-4'>{title}</h1>
+            <p className='lead mt-3'>{comment}</p>
 
-                { loading && <CustomSpinner /> }
+            { loading && <CustomSpinner /> }
 
-                <ItemList products={products} />
+            <ItemList products={products} />
 
-                <ItemCount
-                    itemCounterStart={1}
-                    itemStock={10}
-                    itemOnAdd={handlerOnAdd}
-                />
+            {/* <ItemCount
+                itemCounterStart={1}
+                itemStock={10}
+                itemOnAdd={handlerOnAdd}
+            /> */}
 
-            </Container>
-        </Container>
+        </section>
     );
 }
 
