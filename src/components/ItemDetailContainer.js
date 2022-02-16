@@ -1,24 +1,23 @@
-import ItemCount from './ItemCount';
-import ItemList from './ItemList';
 import CustomSpinner from './CustomSpinner';
-import { getProducts } from '../data/AsyncMock';
+import ItemDetail from './ItemDetail';
+import { getProduct } from '../data/AsyncMock';
 import { useEffect, useState } from 'react';
 
-function ItemListContainer({title, comment}) {
+function ItemDetailContainer({title, comment}) {
 
-    const [ products, setProducts ] = useState([]);
+    const [ product, setProduct ] = useState([]);
     const [ loading, setLoading ] = useState(true);
 
     useEffect( () => {
-        getProducts()
+        getProduct(2)
             .then( (data) => {
-                setProducts(data);
-                console.log('Products data loaded.');
+                setProduct(data);
+                console.log('Product data loaded.');
             })
             .catch( (error) => console.error(error) )
             .finally( () => setLoading(false) )
 
-    }, [products]);
+    }, [product]);
 
     const handlerOnAdd = (itemCounter) => {
         console.log("Se agregaron " + itemCounter + " items al carrito de compras.");
@@ -31,16 +30,10 @@ function ItemListContainer({title, comment}) {
 
             { loading && <CustomSpinner /> }
 
-            <ItemList products={products} />
-
-            <ItemCount
-                itemCounterStart={1}
-                itemStock={10}
-                itemOnAdd={handlerOnAdd}
-            />
+            <ItemDetail product={product} />
 
         </section>
     );
 }
 
-export default ItemListContainer;
+export default ItemDetailContainer;
