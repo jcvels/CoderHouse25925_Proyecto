@@ -1,4 +1,4 @@
-import { Col, Card, CardBody, CardTitle, CardText, CardImg, CardSubtitle, Button, CardHeader, Row, Badge } from 'reactstrap';
+import { Col, Card, CardBody, CardTitle, Button, CardHeader, Row, Badge } from 'reactstrap';
 import ItemCount from './ItemCount';
 
 function Item ( {product}) {
@@ -6,7 +6,7 @@ function Item ( {product}) {
     return (
         <Card className='border-warning text-start'>
             <CardHeader className='bg-warning text-center'>
-                <CardTitle tag="h5">{product.title}</CardTitle>
+                <CardTitle tag="h5">{product.title} - {product.label}</CardTitle>
             </CardHeader>
 
             <CardBody>
@@ -17,12 +17,15 @@ function Item ( {product}) {
                     <Col className='col-md-6' md>
                         <p className='lead'>{product.description}</p>
                         <p>{product.descriptionLong}</p>
-                        <p className='text-danger my-3 lead'>U$S {product.price}</p>
+                        <div className='h-100'>
+                            <p className='text-muted lead'>U$S {product.price}</p>
+                            <ItemCount itemCounterStart={1} itemStock={product.stock} itemOnAdd={()=>alert("to-do")}/>
+                        </div>
                     </Col>
                 </Row>
-                <hr className='bg-warning mb-3 mt-0' />
+                <hr className='bg-warning mb-3 mt-3' />
                 <Row>
-                    <Col className='col-md-3' md >
+                    <Col className='col-md-2' md >
                         <p>
                             Fabricación:
                             <br/>
@@ -31,12 +34,21 @@ function Item ( {product}) {
                             </Badge>
                         </p>
                     </Col>
-                    <Col className='col-md-3' md >
+                    <Col className='col-md-2' md >
                         <p>
                             Horas de Vuelo:
                             <br/>
                             <Badge color='primary' className='me-1'>
                                 {product.use}
+                            </Badge>
+                        </p>
+                    </Col>
+                    <Col className='col-md-2' md >
+                        <p>
+                            Categoría:
+                            <br/>
+                            <Badge color='success text-uppercase' className='me-1'>
+                                {product.category}
                             </Badge>
                         </p>
                     </Col>
@@ -49,17 +61,15 @@ function Item ( {product}) {
                                     &&
                                     product.equipment.map( (item) => {
                                         return ( 
-                                            <Badge color='primary' className='me-2' key={item}>
+                                            <Badge color='info' className='me-2' key={item}>
                                                 {item}
                                             </Badge>
-                                        )})
+                                        )
+                                    })
                              }
                         </p>
                     </Col>
                 </Row>
-
-                <Button className='mt-3' block color='warning' onClick={() => { alert("No hace nada!") }} >Comprar</Button>
-
             </CardBody>
         </Card>
     )

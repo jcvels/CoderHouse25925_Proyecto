@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Card, CardBody, CardTitle, CardText, Button, Col, ButtonGroup } from 'reactstrap';
+import { Button, ButtonGroup } from 'reactstrap';
 
 function ItemCount({ itemCounterStart=0, itemStock=0, itemOnAdd }) {
     

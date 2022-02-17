@@ -1,4 +1,5 @@
 import { Col, Card, CardBody, CardTitle, CardText, CardImg, CardSubtitle, Button, CardHeader } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import ItemCount from './ItemCount';
 
 function Item ( {product}) {
@@ -15,10 +16,10 @@ function Item ( {product}) {
                     <img className='img-fluid' src={pictureUrl} />
                 </div>
                 <CardBody>
-                    <CardSubtitle className='mb-2 text-muted'>${price}</CardSubtitle>
+                    <CardSubtitle className='mb-2 text-muted'>U$S {price}</CardSubtitle>
                     <p className='lead'>{description}</p>
-                    <Button className='mt-auto mb-1' block color='warning' onClick={() => { alert("No hace nada!") }} >Detalles del Producto</Button>
-                    <ItemCount />
+                    <Link to={"/product/" + product.id} className='btn btn-warning w-100 mt-auto mb-1' >Detalles del Producto</Link>
+                    <ItemCount itemCounterStart={1} itemStock={product.stock} itemOnAdd={()=>alert("to-do")}/>
                 </CardBody>
             </Card>
         </Col>

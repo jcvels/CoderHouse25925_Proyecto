@@ -1,44 +1,31 @@
-import ItemCount from './ItemCount';
 import ItemList from './ItemList';
 import CustomSpinner from './CustomSpinner';
 import { getProducts } from '../data/AsyncMock';
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-function ItemListContainer({title, comment}) {
+function ItemListContainer() {
 
     const [ products, setProducts ] = useState([]);
     const [ loading, setLoading ] = useState(true);
 
+    const { categoryName } = useParams();
+
     useEffect( () => {
-        getProducts()
-            .then( (data) => {
-                setProducts(data);
-                console.log('Products data loaded.');
-            })
+        getProducts(categoryName)
+            .then( (data) => setProducts(data) )
             .catch( (error) => console.error(error) )
             .finally( () => setLoading(false) )
+        return setLoading(true);
 
-    }, [products]);
-
-    const handlerOnAdd = (itemCounter) => {
-        console.log("Se agregaron " + itemCounter + " items al carrito de compras.");
-    };
+    }, [categoryName]);
 
     return (
-        <section className='container p-5 text-center' style={{marginTop:100}}>
-            <h1 className='display-4'>{title}</h1>
-            <p className='lead mt-3'>{comment}</p>
-
-            { loading && <CustomSpinner /> }
-
-            <ItemList products={products} />
-
-            <ItemCount
-                itemCounterStart={1}
-                itemStock={10}
-                itemOnAdd={handlerOnAdd}
-            />
-
+        <section name={'item-list'} className='container p-5 text-center'>
+            { 
+                loading ? <CustomSpinner />
+                        : <ItemList products={products} />
+            }
         </section>
     );
 }

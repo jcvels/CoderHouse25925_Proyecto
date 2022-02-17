@@ -1,16 +1,19 @@
 import AppNavbar from './components/Navbar';
 import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
-
-const hightlitherCategories = ["Jets","Propellers","Anphibian","Sprayer"];
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import './App.css';
+ 
 function App() {
   return (
-    <>
-      <AppNavbar title='Best-Planes-On-Sale' categories={hightlitherCategories} />
-      <ItemListContainer title={'Desafio Clase VI'} comment={'Catálogo con MAPS y Promises'}/>
-      <ItemDetailContainer title={'Desafio Clase VII'} comment={'Detalle de Producto'} />
-    </>
+    <BrowserRouter>
+      <AppNavbar title='Best-Planes-On-Sale' />
+      <Routes>
+        <Route path='/' element={ <ItemListContainer /> } />
+        <Route path='/category/:categoryName' element={ <ItemListContainer /> } />
+        <Route path='/product/:productId' element={ <ItemDetailContainer /> } />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

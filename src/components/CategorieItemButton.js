@@ -1,11 +1,10 @@
-import { NavItem, NavLink } from 'reactstrap';
+import { NavItem } from 'reactstrap';
+import { NavLink } from 'react-router-dom';
 
-const handleClickDefault = () => { console.log('not-function-defined') }
-
-function CategorieItem( {label='not-defined', handleClick=handleClickDefault} ) {
+function CategorieItem( {label='not-defined', to='/' } ) {
     return (
         <NavItem>
-            <NavLink style={{cursor:'pointer'}} onClick={handleClick} >{label}</NavLink>
+            <NavLink to={to} className={({ isActive }) => { return isActive ? "nav-link active text-decoration-underline" : "nav-link" }} >{label}</NavLink>
         </NavItem>
     );
 }

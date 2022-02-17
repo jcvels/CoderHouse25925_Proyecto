@@ -2,36 +2,29 @@ import CustomSpinner from './CustomSpinner';
 import ItemDetail from './ItemDetail';
 import { getProduct } from '../data/AsyncMock';
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-function ItemDetailContainer({title, comment}) {
+function ItemDetailContainer() {
 
     const [ product, setProduct ] = useState([]);
     const [ loading, setLoading ] = useState(true);
 
+    const { productId } = useParams();
+
     useEffect( () => {
-        getProduct(2)
-            .then( (data) => {
-                setProduct(data);
-                console.log('Product data loaded.');
-            })
+        getProduct(productId)
+            .then( (data) => setProduct(data) )
             .catch( (error) => console.error(error) )
             .finally( () => setLoading(false) )
 
-    }, [product]);
-
-    const handlerOnAdd = (itemCounter) => {
-        console.log("Se agregaron " + itemCounter + " items al carrito de compras.");
-    };
+    }, [productId]);
 
     return (
-        <section className='container p-5 text-center' style={{marginTop:100}}>
-            <h1 className='display-4'>{title}</h1>
-            <p className='lead mt-3'>{comment}</p>
-
-            { loading && <CustomSpinner /> }
-
-            <ItemDetail product={product} />
-
+        <section name={'item-detail'} className='container p-5 text-center'>
+            { 
+                loading ? <CustomSpinner />
+                        : <ItemDetail product={product} />
+            }
         </section>
     );
 }
