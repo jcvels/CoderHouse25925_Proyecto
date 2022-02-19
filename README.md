@@ -20,6 +20,8 @@ Tienda desarrollada en ReactJS en el marco del curso.
 - Condicional en `ItemListContainer` en caso de que `products` este vacio, sea null o undefined se muestra `CustomAlert`.
 - Condicional en `ItemDetailContainer` en caso de que `product` sea null o undefined se muestra `CustomAlert`.
 
+[Ver cambios detalle de cambios](https://github.com/jcvels/tienda-online-pauvels/commit/9e2c092fb452ba853eca25955cd8668ebb1b43f4)
+
 ### Clase 8 | Routing y Navegación | Primera Entrega del Proyecto Final
 - Modificación del mock para que los datos contengan todos los parametros requeridos para realizar los filtros.
 - Modificación de la función `getProducts()` en `AsyncMock.js` para aceptar en parametro `categoryName` y realizar el filtrado (`.find()`), ó si `categoryName` es `null` o `undefined` de devolveran todos los productos.
@@ -36,6 +38,4 @@ Tienda desarrollada en ReactJS en el marco del curso.
 - Se eliminaron importaciones no usadas en `<ItemCount />`.
 - Cambios esteticos en `<ItemDetail />`.
 
-[Ver cambios en GitHub](https://github.com/jcvels/tienda-online-pauvels/commit/0f0e7bd1228f265c4eeed5b2d6fd8ab83c46bbb1)
-
-
+[Ver cambios detalle de cambios](https://github.com/jcvels/tienda-online-pauvels/commit/0f0e7bd1228f265c4eeed5b2d6fd8ab83c46bbb1)
