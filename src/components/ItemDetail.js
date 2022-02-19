@@ -1,7 +1,7 @@
 import { Col, Card, CardBody, CardTitle, Button, CardHeader, Row, Badge } from 'reactstrap';
 import ItemCount from './ItemCount';
 
-function Item ( {product}) {
+function ItemDetail ( {product}) {
   
     return (
         <Card className='border-warning text-start'>
@@ -75,4 +75,4 @@ function Item ( {product}) {
     )
 }
 
-export default Item;
+export default ItemDetail;

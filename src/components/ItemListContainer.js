@@ -3,6 +3,7 @@ import CustomSpinner from './CustomSpinner';
 import { getProducts } from '../data/AsyncMock';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import CustomAlert from './CustomAlert';
 
 function ItemListContainer() {
 
@@ -16,6 +17,7 @@ function ItemListContainer() {
             .then( (data) => setProducts(data) )
             .catch( (error) => console.error(error) )
             .finally( () => setLoading(false) )
+
         return setLoading(true);
 
     }, [categoryName]);
@@ -23,8 +25,11 @@ function ItemListContainer() {
     return (
         <section name={'item-list'} className='container p-5 text-center'>
             { 
-                loading ? <CustomSpinner />
-                        : <ItemList products={products} />
+                loading
+                    ? <CustomSpinner />
+                    : products.length > 0 
+                        ? <ItemList products={products} />
+                        : <CustomAlert label={"No hay productos disponibles"} />
             }
         </section>
     );
