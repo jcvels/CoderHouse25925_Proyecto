@@ -6,11 +6,18 @@ Tienda desarrollada en ReactJS en el marco del curso.
 - `npm test`
 - `npm run build`
 
-## Style Libraries 
-- Boostrap v5.1.3
-- Reactstrap v9.0.1
+## Libraries 
+- bootstrap *v5.1.3*
+- reactstrap *v9.0.1*
+- react-router-dom *v6.2.1*
 
 ## Release notes
+
+## Clase 9 | Eventos | Sincronizar counter
+- Agregado de función `getCategories` en `AsyncMock.js` para entregar informacion sobre categorias.
+- Los datos de `AsyncMock.js` se importan desde `.json` para simplificar el archivo.
+- Modificación de `Navbar.js` obtener las categorias desde `AsyncMonck.js`. Implementación de metodo `.map` para renderizar cada categoria.
+- Creación de `CategorieItemSpinner.js` para mostrar un mensaje mienstras cargan las categorías.
 
 ### Clase 8 | Routing y Navegación | AfterClass 19/02
 - Correcciones Clase 7
@@ -39,3 +46,7 @@ Tienda desarrollada en ReactJS en el marco del curso.
 - Cambios esteticos en `<ItemDetail />`.
 
 [Ver cambios detalle de cambios](https://github.com/jcvels/tienda-online-pauvels/commit/0f0e7bd1228f265c4eeed5b2d6fd8ab83c46bbb1)
+
+## To-Do List
+- [X] Configurar categorías segun datos del AsyncMock.
+- [ ] Aplicar criterios de Intercambiabilidad.

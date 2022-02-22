@@ -1,14 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Navbar, Nav, NavbarBrand, NavItem, Button, Collapse, NavbarToggler } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { getCategories } from '../data/AsyncMock';
 import CategorieItemButton from './CategorieItemButton';
 import CartWidget from './CartWidget';
+import CategorieItemSpinner from './CategorieItemSpinner';
 
 function AppNavbar({title}) {
 
     const [ menuState, setMenuState] = useState(false);
+    const [ categories, setCategories] = useState([]);
    
     const menuStateChanger = () => setMenuState( !menuState );
+
+    useEffect( () => {
+        getCategories()
+            .then( (data) => setCategories(data) )
+            .catch( (err) => console.log(err))
+            .finally()
+
+    }, [categories]);
 
     return (
         <Navbar
@@ -49,10 +60,13 @@ function AppNavbar({title}) {
                     navbar
                 >
                     <CategorieItemButton label="All" to='/' />
-                    <CategorieItemButton label="Jets" to='/category/jets' />
-                    <CategorieItemButton label="Propellers" to='/category/propellers' />
-                    <CategorieItemButton label="Anphibian" to='/category/anphibian' />
-                    <CategorieItemButton label="Sprayer" to='/category/sprayer' />
+
+                    {
+                        categories.length > 0
+                            ? categories.map( (item) => { return <CategorieItemButton key={item.id} label={item.label} to={ '/category/' + item.path } /> } )
+                            : <CategorieItemSpinner />
+                    }
+                    
                 </Nav>
 
                 <Nav navbar className='ms-2 me-2 mt-2'>
