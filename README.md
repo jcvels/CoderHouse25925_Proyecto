@@ -13,7 +13,7 @@ Tienda desarrollada en ReactJS en el marco del curso.
 
 ## Release notes
 
-## To-Do List
+### To-Do List
 - [X] Configurar categorías segun datos del AsyncMock.
 - [ ] Aplicar criterios de intercambiabilidad.
 - [X] Desafio Clase 9.
@@ -32,7 +32,7 @@ Tienda desarrollada en ReactJS en el marco del curso.
 - Agrego `useEffect` para mostrar mensaje con la cantidad seleccionada.
 - Otros cambios esteticos menores.
 
-[Ver detalle de cambios]()
+[Ver detalle de cambios](https://github.com/jcvels/tienda-online-pauvels/commit/ae03de49932ebf85820d57ea9e34e5aa7f51894c)
 
 ### Clase 8 | Routing y Navegación | AfterClass 19/02
 - Correcciones Clase 7
