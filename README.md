@@ -13,11 +13,26 @@ Tienda desarrollada en ReactJS en el marco del curso.
 
 ## Release notes
 
-## Clase 9 | Eventos | Sincronizar counter
+## To-Do List
+- [X] Configurar categorías segun datos del AsyncMock.
+- [ ] Aplicar criterios de intercambiabilidad.
+- [X] Desafio Clase 9.
+
+### Clase 9 | Eventos | Sincronizar counter
 - Agregado de función `getCategories` en `AsyncMock.js` para entregar informacion sobre categorias.
 - Los datos de `AsyncMock.js` se importan desde `.json` para simplificar el archivo.
 - Modificación de `Navbar.js` obtener las categorias desde `AsyncMonck.js`. Implementación de metodo `.map` para renderizar cada categoria.
 - Creación de `CategorieItemSpinner.js` para mostrar un mensaje mienstras cargan las categorías.
+- Creación de `CartDummy.js` para simular el cart.
+- Creación de `ItemGoCartButton,js`, componente con link al cart.
+- Agregado de nueva ruta `/cart` en `App.js`.
+- Elimino `ItemCount.js` de `Item.js` para que solo sea visible desde el `ItemRetail.js`.
+- Almaceno en estado la cantidad seleccionada en `ItemCount.js` y otro estado para controlar si se muestra `ItemCount` o `ItemGoCartButton`.
+- Genero la funcion `onAddToCart` para controlar los cambios de estado.
+- Agrego `useEffect` para mostrar mensaje con la cantidad seleccionada.
+- Otros cambios esteticos menores.
+
+[Ver detalle de cambios]()
 
 ### Clase 8 | Routing y Navegación | AfterClass 19/02
 - Correcciones Clase 7
@@ -27,7 +42,7 @@ Tienda desarrollada en ReactJS en el marco del curso.
 - Condicional en `ItemListContainer` en caso de que `products` este vacio, sea null o undefined se muestra `CustomAlert`.
 - Condicional en `ItemDetailContainer` en caso de que `product` sea null o undefined se muestra `CustomAlert`.
 
-[Ver cambios detalle de cambios](https://github.com/jcvels/tienda-online-pauvels/commit/9e2c092fb452ba853eca25955cd8668ebb1b43f4)
+[Ver detalle de cambios](https://github.com/jcvels/tienda-online-pauvels/commit/9e2c092fb452ba853eca25955cd8668ebb1b43f4)
 
 ### Clase 8 | Routing y Navegación | Primera Entrega del Proyecto Final
 - Modificación del mock para que los datos contengan todos los parametros requeridos para realizar los filtros.
@@ -45,8 +60,4 @@ Tienda desarrollada en ReactJS en el marco del curso.
 - Se eliminaron importaciones no usadas en `<ItemCount />`.
 - Cambios esteticos en `<ItemDetail />`.
 
-[Ver cambios detalle de cambios](https://github.com/jcvels/tienda-online-pauvels/commit/0f0e7bd1228f265c4eeed5b2d6fd8ab83c46bbb1)
-
-## To-Do List
-- [X] Configurar categorías segun datos del AsyncMock.
-- [ ] Aplicar criterios de Intercambiabilidad.
+[Ver detalle de cambios](https://github.com/jcvels/tienda-online-pauvels/commit/0f0e7bd1228f265c4eeed5b2d6fd8ab83c46bbb1)

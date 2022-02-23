@@ -19,7 +19,6 @@ function Item ( {product}) {
                     <CardSubtitle className='mb-2 text-muted'>U$S {price}</CardSubtitle>
                     <p className='lead'>{description}</p>
                     <Link to={"/product/" + product.id} className='btn btn-warning w-100 mt-auto mb-1' >Detalles del Producto</Link>
-                    <ItemCount itemCounterStart={1} itemStock={product.stock} itemOnAdd={()=>alert("to-do")}/>
                 </CardBody>
             </Card>
         </Col>

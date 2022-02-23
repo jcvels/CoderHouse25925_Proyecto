@@ -1,16 +1,16 @@
 import { useState } from 'react';
-import { Button, ButtonGroup } from 'reactstrap';
+import { Badge, Button, ButtonGroup } from 'reactstrap';
 
 function ItemCount({ itemCounterStart=0, itemStock=0, itemOnAdd }) {
     
     const [itemCounter, setItemCounter] = useState(itemCounterStart); 
 
     const incrementItemCounter = () => {
-        itemCounter < itemStock ? setItemCounter( itemCounter + 1 ) : alert('No puede solicitar mas unidades que las disponibles en stock.')
+        itemCounter < itemStock && setItemCounter( itemCounter + 1 )
     }
 
     const decrementItemCounter = () => {
-        itemCounter > 1 ? setItemCounter( itemCounter - 1 ) : alert('No puede solicitar menos de una unidad.')
+        itemCounter > 1 && setItemCounter( itemCounter - 1 )
     }
 
     const addToCart = () => {
@@ -21,7 +21,8 @@ function ItemCount({ itemCounterStart=0, itemStock=0, itemOnAdd }) {
         <ButtonGroup className='w-100 my-1'>
 
             <Button 
-                style={{width:40}}
+                style={{width:60}}
+                color='primary'
                 onClick={decrementItemCounter}
                 disabled={ itemStock > 0 ? false : true }
                 children={'-'}
@@ -31,12 +32,15 @@ function ItemCount({ itemCounterStart=0, itemStock=0, itemOnAdd }) {
                 color='warning'
                 disabled={ itemStock > 0 ? false : true }
                 onClick={addToCart}
-                children={itemStock > 0 ? "ADD " + itemCounter + " TO CART" : "OUT OF STOCK" }
                 block
-            />
+            >
+                { itemStock > 0 && "ADD TO CART" } 
+                <Badge className='ms-2' color='primary'>{ itemStock > 0 ? itemCounter : "OUT OF STOCK" }</Badge>
+            </Button>
 
             <Button
-                style={{width:40}}
+                style={{width:60}}
+                color='primary'
                 onClick={incrementItemCounter}
                 disabled={ itemStock > 0 ? false : true }
                 children={'+'}

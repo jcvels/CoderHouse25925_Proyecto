@@ -1,14 +1,32 @@
-import { Col, Card, CardBody, CardTitle, Button, CardHeader, Row, Badge } from 'reactstrap';
+import { useEffect, useState } from 'react';
+import { Col, Card, CardBody, CardTitle, CardHeader, Row, Badge } from 'reactstrap';
 import ItemCount from './ItemCount';
+import ItemGoCartButton from './ItemGoCartButton';
 
 function ItemDetail ( {product}) {
-  
+
+    const [confirm, setConfirm] = useState(false);
+    const [qtty, setQtty] = useState(0);
+
+    const onAddToCart = (qttyToAdd) => {
+
+        if (qttyToAdd > 0 & qttyToAdd <= product.stock) {
+            setQtty(qttyToAdd);
+            setConfirm(true);
+        }
+        else
+            console.error('Se informó un valor menor a 1 o superior al stock disponible');
+    };
+
+    useEffect( () => {
+        console.log('Hay ' + qtty + ' items en carrito.');
+    }, [qtty] );
+
     return (
         <Card className='border-warning text-start'>
             <CardHeader className='bg-warning text-center'>
                 <CardTitle tag="h5">{product.title} - {product.label}</CardTitle>
             </CardHeader>
-
             <CardBody>
                 <Row>
                     <Col className='col-md-6' md>
@@ -19,55 +37,38 @@ function ItemDetail ( {product}) {
                         <p>{product.descriptionLong}</p>
                         <div className='h-100'>
                             <p className='text-muted lead'>U$S {product.price}</p>
-                            <ItemCount itemCounterStart={1} itemStock={product.stock} itemOnAdd={()=>alert("to-do")}/>
+
+                            {
+                                confirm
+                                    ? <ItemGoCartButton />
+                                    : <ItemCount itemCounterStart={1} itemStock={product.stock} itemOnAdd={onAddToCart}/>
+                            }
+
                         </div>
                     </Col>
                 </Row>
                 <hr className='bg-warning mb-3 mt-3' />
                 <Row>
                     <Col className='col-md-2' md >
-                        <p>
-                            Fabricación:
-                            <br/>
-                            <Badge color='primary' className='me-1'>
-                                {product.modelYear}
-                            </Badge>
-                        </p>
+                        <p>Fabricación:</p>
+                        <Badge color='primary' >{product.modelYear}</Badge>
                     </Col>
                     <Col className='col-md-2' md >
-                        <p>
-                            Horas de Vuelo:
-                            <br/>
-                            <Badge color='primary' className='me-1'>
-                                {product.use}
-                            </Badge>
-                        </p>
+                        <p>Horas de Vuelo:</p>
+                        <Badge color='primary'>{product.use}</Badge>
                     </Col>
                     <Col className='col-md-2' md >
-                        <p>
-                            Categoría:
-                            <br/>
-                            <Badge color='success text-uppercase' className='me-1'>
-                                {product.category}
-                            </Badge>
-                        </p>
+                        <p>Categoría:</p>
+                        <Badge color='success text-uppercase'>{product.category}</Badge>
                     </Col>
                     <Col className='col-md-6' md >
-                        <p>
-                            Equipamiento:
-                            <br/>
+                        <p>Equipamiento:</p>
                             {
                                 product.equipment 
-                                    &&
-                                    product.equipment.map( (item) => {
-                                        return ( 
-                                            <Badge color='info' className='me-2' key={item}>
-                                                {item}
-                                            </Badge>
-                                        )
+                                    && product.equipment.map( (item) => {
+                                        return <Badge color='info' className='me-2' key={item}>{item}</Badge>
                                     })
-                             }
-                        </p>
+                            }
                     </Col>
                 </Row>
             </CardBody>
