@@ -1,15 +1,17 @@
-import { useEffect, useState } from 'react';
-import { Navbar, Nav, NavbarBrand, NavItem, Button, Collapse, NavbarToggler } from 'reactstrap';
+import { useContext, useEffect, useState } from 'react';
+import { Navbar, Nav, NavItem, Button, Collapse, NavbarToggler } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { getCategories } from '../data/AsyncMock';
 import CategorieItemButton from './CategorieItemButton';
 import CartWidget from './CartWidget';
 import CategorieItemSpinner from './CategorieItemSpinner';
+import CartContext from '../context/CartContext'
 
 function AppNavbar({title}) {
 
     const [ menuState, setMenuState] = useState(false);
     const [ categories, setCategories] = useState([]);
+    const { itemsOnCart } = useContext(CartContext)
    
     const menuStateChanger = () => setMenuState( !menuState );
 
@@ -77,7 +79,7 @@ function AppNavbar({title}) {
                         <Button color="light" className='ms-1'>
                             Sign-In
                         </Button>
-                        <CartWidget itemOnCart={0} handleClick={()=> alert("nada")}/>
+                        <CartWidget itemOnCart={itemsOnCart()} handleClick={()=> alert("nada")}/>
                     </NavItem>
                 </Nav>
             </Collapse>

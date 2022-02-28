@@ -25,6 +25,10 @@ Tienda desarrollada en ReactJS en el marco del curso.
 - Implementación de `CartContexProvider` en `App.js`. 
 - Modificación de `ItemDetail.js` para conectar con contexto.
 - Creación de `CartDummy.js` para visualizar las nuesvas funcionalidades de manera mas cómoda.
+- Sumo `productQttyInCart` a `CartContext` para buscar la cantidad de un producto incluido en el carrito.
+- Agregado de `itemsOnCart` que calcula e indica la cantidad de items en el carrito.
+- Consulta de cantidad de items desde `NavBar.js`, se pasa como parametro a `CartWidget.js`.
+- Dentro de `ItemDetail.js` consulto la cantidad de producto incluidos en el Cart, le resto el valor al stock y paso como parametro el resultado a `ItemCount.js`. Muestro un mensaje si los la cantidad de productos disponibles es menor a 1.
 
 [Ver detalle de cambios](https://github.com/jcvels/tienda-online-pauvels/commit/692ed093f4b0f1334b404d25f88d3cebd4aea5ca)
 

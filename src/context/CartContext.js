@@ -9,17 +9,17 @@ export const CartContextProvider = ({children}) => {
     /* Agrega un elemento al Cart */
     const addItem = (product, qtty) => {
         
-        /* Se ejecuta cuando es un producto que ya estaba en el carrito */
+        /* Se ejecuta cuando `product` es un producto que ya estaba en el carrito */
         if( isInCart(product.id) ) {
             const cartUpdated = cart.map( (item) => {
                 if(item.id === product.id)
                     item.quantity = item.quantity + qtty
-                    return item
-            } )
-            setCart( cartUpdated )
+                return item
+            })
+            setCart(cartUpdated)
         }
 
-        /* Se ejecuta cuando es un producto que no está en el carrito */
+        /* Se ejecuta cuando `product` es un producto que no está en el carrito */
         else {
             const productToAdd = {
                 ...product,
@@ -49,6 +49,26 @@ export const CartContextProvider = ({children}) => {
         return cart.some( (item)=> item.id === id )
     }
 
+    /* Indica la cantidad de un elemento (id) que encuentra en el Cart */
+    const productQttyInCart = (id) => {
+        const productInCart = cart.find( (item)=> item.id === id )
+
+        if(productInCart)
+            return productInCart.quantity
+        else
+            return 0
+    }
+
+    /* calcula y devuelve la cantidad de elementos total del carrito */
+    const itemsOnCart = () => {
+
+        let sum = 0;
+
+        cart.map( item => sum += item.quantity );
+
+        return sum
+    }
+
     return (
         <Context.Provider value={
             {
@@ -56,7 +76,9 @@ export const CartContextProvider = ({children}) => {
                 addItem,
                 removeItem,
                 clear,
-                isInCart
+                isInCart,
+                productQttyInCart,
+                itemsOnCart
             }
         } >
             {children}
