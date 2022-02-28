@@ -1,26 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { Col, Card, CardBody, CardTitle, CardHeader, Row, Badge } from 'reactstrap';
 import ItemCount from './ItemCount';
 import ItemGoCartButton from './ItemGoCartButton';
+import CartContext from '../context/CartContext';
 
 function ItemDetail ( {product}) {
 
     const [confirm, setConfirm] = useState(false);
-    const [qtty, setQtty] = useState(0);
+
+    const { addItem } = useContext(CartContext);
 
     const onAddToCart = (qttyToAdd) => {
 
         if (qttyToAdd > 0 & qttyToAdd <= product.stock) {
-            setQtty(qttyToAdd);
-            setConfirm(true);
+            setConfirm( addItem(product,qttyToAdd) );
         }
         else
             console.error('Se informó un valor menor a 1 o superior al stock disponible');
     };
-
-    useEffect( () => {
-        console.log('Hay ' + qtty + ' items en carrito.');
-    }, [qtty] );
 
     return (
         <Card className='border-warning text-start'>

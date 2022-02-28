@@ -1,6 +1,6 @@
 [
     {
-        "id":"AD376HU10",
+        "id":"AD376",
         "title":"Cesna Citation X",
         "category":"jets",
         "description":"Reactor corporativo ligero",
@@ -14,7 +14,7 @@
         "stock":10
     },
     {
-        "id":"KLDI9828BVGYC",
+        "id":"KL982",
         "title":"Beechcraft Baron G58",
         "category":"propellers",
         "description":"Avión ligero bimotor de pistón",
@@ -28,7 +28,7 @@
         "stock":2
     },
     {
-        "id":"JSD932ISD8",
+        "id":"JS932",
         "title":"Cessna 172 Skyhawk",
         "category":"propellers",
         "description":"Avión monomotor de ala alta",
@@ -42,7 +42,7 @@
         "stock":5
     },
     {
-        "id":"KJHS98298T2W",
+        "id":"KJ982",
         "title":"Cessna 208 Caravan",
         "category":"anphibian",
         "description":"Avión utilitario turbohélice",
@@ -56,7 +56,7 @@
         "stock":9
     },
     {
-        "id":"AYR3VN8DA",
+        "id":"YR38D",
         "title":"Air Tractor AT-400",
         "category":"sprayer",
         "description":"Avión aeroaplicador",

@@ -17,6 +17,16 @@ Tienda desarrollada en ReactJS en el marco del curso.
 - [X] Configurar categorías segun datos del AsyncMock.
 - [ ] Aplicar criterios de intercambiabilidad.
 - [X] Desafio Clase 9.
+- [ ] Solucionar 'warning' en consola al mostrar/ocultar el menú responsive.
+- [X] Desafio Clase 10.
+
+### Clase 10 | Context | CartContext
+- Creacion de `CartContext.js`.
+- Implementación de `CartContexProvider` en `App.js`. 
+- Modificación de `ItemDetail.js` para conectar con contexto.
+- Creación de `CartDummy.js` para visualizar las nuesvas funcionalidades de manera mas cómoda.
+
+[Ver detalle de cambios](https://github.com/jcvels/tienda-online-pauvels/commit/<COMMIT-ID>)
 
 ### Clase 9 | Eventos | Sincronizar counter
 - Agregado de función `getCategories` en `AsyncMock.js` para entregar informacion sobre categorias.
