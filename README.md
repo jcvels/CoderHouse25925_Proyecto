@@ -26,7 +26,7 @@ Tienda desarrollada en ReactJS en el marco del curso.
 - Modificación de `ItemDetail.js` para conectar con contexto.
 - Creación de `CartDummy.js` para visualizar las nuesvas funcionalidades de manera mas cómoda.
 
-[Ver detalle de cambios](https://github.com/jcvels/tienda-online-pauvels/commit/<COMMIT-ID>)
+[Ver detalle de cambios](https://github.com/jcvels/tienda-online-pauvels/commit/692ed093f4b0f1334b404d25f88d3cebd4aea5ca)
 
 ### Clase 9 | Eventos | Sincronizar counter
 - Agregado de función `getCategories` en `AsyncMock.js` para entregar informacion sobre categorias.
