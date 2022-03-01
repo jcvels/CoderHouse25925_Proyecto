@@ -1,7 +1,7 @@
 import products from './products.mock.json';
 import categories from './categories.mock.json';
 
-const mockDelay = 3000;
+const mockDelay = 300;
 
 export const getProducts = (category) => {
     return new Promise( (res) => {

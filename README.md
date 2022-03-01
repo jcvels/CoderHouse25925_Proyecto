@@ -19,6 +19,15 @@ Tienda desarrollada en ReactJS en el marco del curso.
 - [X] Desafio Clase 9.
 - [ ] Solucionar 'warning' en consola al mostrar/ocultar el menú responsive.
 - [X] Desafio Clase 10.
+- [X] Desafío Clase 11.
+- [ ] Vista responsive del Cart.
+
+### Clase 11 | Técnicas de rendering | Cart View
+- Creación del componentes `Cart.js`, `CartList.js` y `CartItem.js` usados para mostrar la lista de productos agregados al carrito.
+- Creación de funciones `getQuantity()` y `getTotal()` dentro de `CartContext.js` a fin de obtener cantidad de items y precio total.
+- Consulta de cantidad de items `CartWidget.js` accediendo al `CartContext`.
+- Creación de la función `getProductQuantity()` para obtener la cantidad incluida en el carrito de UN producto en particular.
+- Dentro de `ItemDetail.js` consulto la cantidad de producto incluidos en el Cart y lo resto al valor stock. De esta manera nunca se podran agregar al carrito mas unidades de las disponibles. Muestro mensaje cuando todo el stock fue incluido en el carrito.
 
 ### Clase 10 | Context | CartContext
 - Creacion de `CartContext.js`.
@@ -26,9 +35,6 @@ Tienda desarrollada en ReactJS en el marco del curso.
 - Modificación de `ItemDetail.js` para conectar con contexto.
 - Creación de `CartDummy.js` para visualizar las nuesvas funcionalidades de manera mas cómoda.
 - Sumo `productQttyInCart` a `CartContext` para buscar la cantidad de un producto incluido en el carrito.
-- Agregado de `itemsOnCart` que calcula e indica la cantidad de items en el carrito.
-- Consulta de cantidad de items desde `NavBar.js`, se pasa como parametro a `CartWidget.js`.
-- Dentro de `ItemDetail.js` consulto la cantidad de producto incluidos en el Cart, le resto el valor al stock y paso como parametro el resultado a `ItemCount.js`. Muestro un mensaje si los la cantidad de productos disponibles es menor a 1.
 
 [Ver detalle de cambios](https://github.com/jcvels/tienda-online-pauvels/commit/692ed093f4b0f1334b404d25f88d3cebd4aea5ca)
 

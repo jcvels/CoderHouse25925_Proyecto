@@ -8,10 +8,10 @@ function ItemDetail ({product}) {
 
     const [confirm, setConfirm] = useState(false);
 
-    const { addItem, productQttyInCart } = useContext(CartContext);
+    const { addItem, getProductQuantity } = useContext(CartContext);
 
     const onAddToCart = (qttyToAdd) => {
-        if (qttyToAdd > 0 & qttyToAdd <= (product.stock - productQttyInCart(product.id)) ) {
+        if (qttyToAdd > 0 & qttyToAdd <= (product.stock - getProductQuantity(product.id)) ) {
             setConfirm( addItem(product,qttyToAdd) );
         }
         else
@@ -37,11 +37,11 @@ function ItemDetail ({product}) {
                             {
                                 confirm
                                     ? <ItemGoCartButton />
-                                    : <ItemCount itemCounterStart={1} itemStock={product.stock - productQttyInCart(product.id)} itemOnAdd={onAddToCart}/>
+                                    : <ItemCount itemCounterStart={1} itemStock={product.stock - getProductQuantity(product.id)} itemOnAdd={onAddToCart}/>
                             }
 
                             {
-                                product.stock <= productQttyInCart(product.id)
+                                product.stock <= getProductQuantity(product.id)
                                     && <p className='text-danger small'>Agregó todas las unidades disponibles al carrito.</p>
                             }
 

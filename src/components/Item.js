@@ -1,6 +1,5 @@
 import { Col, Card, CardBody, CardTitle, CardText, CardImg, CardSubtitle, Button, CardHeader } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import ItemCount from './ItemCount';
 
 function Item ( {product}) {
 

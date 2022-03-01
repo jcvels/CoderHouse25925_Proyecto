@@ -50,9 +50,8 @@ export const CartContextProvider = ({children}) => {
     }
 
     /* Indica la cantidad de un elemento (id) que encuentra en el Cart */
-    const productQttyInCart = (id) => {
+    const getProductQuantity = (id) => {
         const productInCart = cart.find( (item)=> item.id === id )
-
         if(productInCart)
             return productInCart.quantity
         else
@@ -60,13 +59,17 @@ export const CartContextProvider = ({children}) => {
     }
 
     /* calcula y devuelve la cantidad de elementos total del carrito */
-    const itemsOnCart = () => {
-
+    const getQuantity = () => {
         let sum = 0;
-
         cart.map( item => sum += item.quantity );
-
         return sum
+    }
+
+    /* calcula y devuelve la suma del precio de los productos en el carrito */
+    const getTotal = () => {
+        let totalPrice = 0;
+        cart.map( item => totalPrice += (item.quantity * item.price) );
+        return totalPrice
     }
 
     return (
@@ -77,8 +80,9 @@ export const CartContextProvider = ({children}) => {
                 removeItem,
                 clear,
                 isInCart,
-                productQttyInCart,
-                itemsOnCart
+                getProductQuantity,
+                getQuantity,
+                getTotal
             }
         } >
             {children}
