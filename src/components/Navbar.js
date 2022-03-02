@@ -29,7 +29,7 @@ function AppNavbar({title}) {
             fixed="top"
         >
             <Link className='navbar-brand' to="/">
-                <img src={'/avion.svg'} width={60} alt='Logo de la aplicación' />
+                <img src={'/svg/avion.svg'} width={60} alt='Logo de la aplicación' />
                 <h1 className='lead' >{title}</h1>
             </Link>
 

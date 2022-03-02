@@ -16,7 +16,7 @@ function CartWidget() {
 
     return (
         <Link to={'/cart'} className='btn ms-2 me-2 position-relative bg-success'>
-            <img src={'/cart.svg'} width={'100%'} alt='Ícono carrito de compras' />
+            <img src={'/svg/cart.svg'} width={'100%'} alt='Ícono carrito de compras' />
             <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 { 
                     itemsOnCart < 10 

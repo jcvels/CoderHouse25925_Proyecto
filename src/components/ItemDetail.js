@@ -3,19 +3,22 @@ import { Col, Card, CardBody, CardTitle, CardHeader, Row, Badge } from 'reactstr
 import ItemCount from './ItemCount';
 import ItemGoCartButton from './ItemGoCartButton';
 import CartContext from '../context/CartContext';
+import { useNotificationServices } from '../services/NotificationService';
 
 function ItemDetail ({product}) {
 
     const [confirm, setConfirm] = useState(false);
-
     const { addItem, getProductQuantity } = useContext(CartContext);
+    const setToast = useNotificationServices()
 
     const onAddToCart = (qttyToAdd) => {
-        if (qttyToAdd > 0 & qttyToAdd <= (product.stock - getProductQuantity(product.id)) ) {
-            setConfirm( addItem(product,qttyToAdd) );
+        if (qttyToAdd > 0 & qttyToAdd <= (product.stock) ) {
+            addItem(product,qttyToAdd)
+            setConfirm(true)
+            setToast('success','Se agregó el producto al carrito')
         }
         else
-            console.error('Se informó un valor menor a 1 o superior al stock disponible');
+            console.error(`Se informó un valor menor a 1 o superior al stock disponible = ${qttyToAdd}`);
     };
 
     return (
@@ -37,12 +40,12 @@ function ItemDetail ({product}) {
                             {
                                 confirm
                                     ? <ItemGoCartButton />
-                                    : <ItemCount itemCounterStart={1} itemStock={product.stock - getProductQuantity(product.id)} itemOnAdd={onAddToCart}/>
+                                    : <ItemCount itemCounterStart={getProductQuantity(product.id)} itemStock={product.stock} itemOnAdd={onAddToCart}/>
                             }
 
                             {
-                                product.stock <= getProductQuantity(product.id)
-                                    && <p className='text-danger small'>Agregó todas las unidades disponibles al carrito.</p>
+                                getProductQuantity(product.id) > 0
+                                    && <p className='text-danger small'>Este producto ya se encuentra en el carrito.</p>
                             }
 
                         </div>

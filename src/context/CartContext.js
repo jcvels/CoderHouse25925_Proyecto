@@ -13,7 +13,7 @@ export const CartContextProvider = ({children}) => {
         if( isInCart(product.id) ) {
             const cartUpdated = cart.map( (item) => {
                 if(item.id === product.id)
-                    item.quantity = item.quantity + qtty
+                    item.quantity = qtty
                 return item
             })
             setCart(cartUpdated)
@@ -27,8 +27,6 @@ export const CartContextProvider = ({children}) => {
             }
             setCart([...cart,productToAdd])
         }
-
-        return true
     }
 
     /* Elimina un elemento del Cart */

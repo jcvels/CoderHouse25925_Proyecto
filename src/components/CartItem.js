@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Col, Row } from 'reactstrap'
 
 function CartItem({item, onRemove }) {
@@ -9,7 +10,12 @@ function CartItem({item, onRemove }) {
             <Col className='col-2'>${item.price}</Col>
             <Col className='col-2'>${item.price * item.quantity}</Col>
             <Col className='col-1 text-end'>
-                <span className='btn badge btn-danger ms-1' onClick={onRemove}>Eliminar</span>
+                <Link to={`/product/${item.id}`} className='btn badge btn-secondary ms-1'>
+                    <img src={'/svg/edit.svg'} width={'100%'} alt='Editar' />
+                </Link>
+                <span className='btn badge btn-danger ms-1' onClick={onRemove}>
+                    <img src={'/svg/delete.svg'} width={'100%'} alt='Eliminar' />
+                </span>
             </Col>
         </Row>
     )

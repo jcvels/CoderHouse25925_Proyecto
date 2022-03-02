@@ -18,32 +18,36 @@ function ItemCount({ itemCounterStart=0, itemStock=0, itemOnAdd }) {
     }
     
     return (
-        <ButtonGroup className='w-100 my-1'>
+        <ButtonGroup className='w-100 my-1' disabled={ itemStock > 0 ? false : true }>
 
             <Button 
                 style={{width:60}}
-                color='primary'
+                color='outline-warning'
                 onClick={decrementItemCounter}
-                disabled={ itemStock > 0 ? false : true }
                 children={'-'}
             />
             
             <Button
-                color='warning'
-                disabled={ itemStock > 0 ? false : true }
-                onClick={addToCart}
-                block
-            >
-                { itemStock > 0 && "ADD TO CART" } 
-                <Badge className='ms-2' color='primary'>{ itemStock > 0 ? itemCounter : "OUT OF STOCK" }</Badge>
-            </Button>
+                style = {{width:120}}
+                color = 'secondary'
+                disabled = { itemStock > 0 ? false : true }
+                children = { itemCounter } 
+            />
 
             <Button
                 style={{width:60}}
-                color='primary'
+                color='outline-warning'
                 onClick={incrementItemCounter}
-                disabled={ itemStock > 0 ? false : true }
+                //disabled={ itemStock > 0 ? false : true }
                 children={'+'}
+            />
+
+            <Button
+                color='success'
+                disabled={ itemCounter > 0 ? false : true }
+                onClick={addToCart}
+                block
+                children = { itemStock > 0 ? "ADD TO CART" : "OUT OF STOCK" } 
             />
 
         </ButtonGroup>

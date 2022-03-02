@@ -29,6 +29,8 @@ Tienda desarrollada en ReactJS en el marco del curso.
 - Creación de la función `getProductQuantity()` para obtener la cantidad incluida en el carrito de UN producto en particular.
 - Dentro de `ItemDetail.js` consulto la cantidad de producto incluidos en el Cart y lo resto al valor stock. De esta manera nunca se podran agregar al carrito mas unidades de las disponibles. Muestro mensaje cuando todo el stock fue incluido en el carrito.
 
+[Ver detalle de cambios](https://github.com/jcvels/tienda-online-pauvels/commit/6b5f9d0fc36d4dab7cc8650f6dff72d7fc98f301)
+
 ### Clase 10 | Context | CartContext
 - Creacion de `CartContext.js`.
 - Implementación de `CartContexProvider` en `App.js`. 
