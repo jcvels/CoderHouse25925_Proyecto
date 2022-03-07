@@ -30,6 +30,8 @@ Tienda desarrollada en ReactJS en el marco del curso.
 - Modificación de `ItemListContainer.js` para funcionar con `FirebaseService.js`.
 - Modificación de `ItemDetailContainer.js` para funcionar con `FirebaseService.js`.
 
+[Ver detalle de cambios](https://github.com/jcvels/tienda-online-pauvels/commit/8fa3486895f16c6f91b05e3a1ef5bcda01c88af1)
+
 ### Clase 11 | Técnicas de rendering | Cart View
 - Creación del componentes `Cart.js`, `CartList.js` y `CartItem.js` usados para mostrar la lista de productos agregados al carrito.
 - Creación de funciones `getQuantity()` y `getTotal()` dentro de `CartContext.js` a fin de obtener cantidad de items y precio total.
