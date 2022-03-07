@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Navbar, Nav, NavItem, Button, Collapse, NavbarToggler } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { getCategories } from '../data/AsyncMock';
+import { getCategories } from '../services/FirebaseService';
 import CategorieItemButton from './CategorieItemButton';
 import CartWidget from './CartWidget';
 import CategorieItemSpinner from './CategorieItemSpinner';
@@ -10,15 +10,10 @@ function AppNavbar({title}) {
 
     const [ menuState, setMenuState] = useState(false);
     const [ categories, setCategories] = useState([]);
-   
     const menuStateChanger = () => setMenuState( !menuState );
 
     useEffect( () => {
-        getCategories()
-            .then( (data) => setCategories(data) )
-            .catch( (err) => console.log(err))
-            .finally()
-
+        getCategories( (data) => setCategories(data) )
     }, [categories]);
 
     return (

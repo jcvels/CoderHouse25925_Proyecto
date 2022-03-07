@@ -1,24 +1,26 @@
-import ItemList from './ItemList';
-import CustomSpinner from './CustomSpinner';
-import { getProducts } from '../data/AsyncMock';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { getProducts } from '../services/FirebaseService';
+import ItemList from './ItemList';
+import CustomSpinner from './CustomSpinner';
 import CustomAlert from './CustomAlert';
 
 function ItemListContainer() {
 
     const [ products, setProducts ] = useState([]);
     const [ loading, setLoading ] = useState(true);
-
     const { categoryName } = useParams();
 
     useEffect( () => {
-        getProducts(categoryName)
-            .then( (data) => setProducts(data) )
-            .catch( (error) => console.error(error) )
-            .finally( () => setLoading(false) )
-
-        return setLoading(true);
+        getProducts( categoryName, (data) => {
+            setProducts(data)
+            setLoading(false)
+        })
+    
+        return( () => {
+            setProducts([])
+            setLoading(true)
+        })
 
     }, [categoryName]);
 

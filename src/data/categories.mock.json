@@ -1,6 +1,0 @@
-[
-    { "id":1, "label":"Jets", "path":"jets" },
-    { "id":2, "label":"Propellers", "path":"propellers" },
-    { "id":3, "label":"Anphibian", "path":"anphibian" },
-    { "id":4, "label":"Sprayer", "path":"sprayer" }
-]

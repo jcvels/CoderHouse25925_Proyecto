@@ -10,10 +10,9 @@ Tienda desarrollada en ReactJS en el marco del curso.
 - bootstrap *v5.1.3*
 - reactstrap *v9.0.1*
 - react-router-dom *v6.2.1*
+- firebase *v9.6.7*
 
-## Release notes
-
-### To-Do List
+## To-Do List
 - [X] Configurar categorías segun datos del AsyncMock.
 - [ ] Aplicar criterios de intercambiabilidad.
 - [X] Desafio Clase 9.
@@ -21,6 +20,15 @@ Tienda desarrollada en ReactJS en el marco del curso.
 - [X] Desafio Clase 10.
 - [X] Desafío Clase 11.
 - [ ] Vista responsive del Cart.
+
+## Release notes
+### Clase 12 | Utilizando Firebase | Item Collection
+- Instalación de `firebase` y creación de `FirebaseService.js` para conectar con Firebase.
+- Creación de funciones en `FirebaseService.js` para obtener los distintos tipos de datos.
+- Elimino mock con datos usados para el desarrollo.
+- Modificación de `Navbar.js` para funcionar con `FirebaseService.js`.
+- Modificación de `ItemListContainer.js` para funcionar con `FirebaseService.js`.
+- Modificación de `ItemDetailContainer.js` para funcionar con `FirebaseService.js`.
 
 ### Clase 11 | Técnicas de rendering | Cart View
 - Creación del componentes `Cart.js`, `CartList.js` y `CartItem.js` usados para mostrar la lista de productos agregados al carrito.
