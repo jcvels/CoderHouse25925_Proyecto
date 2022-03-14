@@ -1,6 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { doc, getFirestore, query, where } from 'firebase/firestore';
-import { getDoc, getDocs, collection } from 'firebase/firestore'
+import { doc, getFirestore, query, where, getDoc, getDocs, collection, addDoc, writeBatch } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCtAtWHq5l-ipAkfalIIEMERkwFi_xX6JE",
@@ -47,4 +46,39 @@ export const getProduct = (id, onDataGotten) => {
       const data = { id:res.id, ...res.data() }
       onDataGotten(data)
     })
+}
+
+/* setOrder / carga la orden en Firestore */
+export const setOrder = (order, onSuccess, onError) => {
+
+  const batch = writeBatch(db)
+  const outOfStock = []
+  let count = 0
+
+  /* validación de stock para cada item del carrito */
+  order.items.forEach( item => {
+    getDoc( doc(db, 'products', item.id) )
+      .then( res => {
+
+        count++ /* sumo por cada item en el carrito */
+
+        res.data().stock >= item.quantity
+          ? batch.update( doc(db, 'products', item.id), { stock: res.data().stock - item.quantity } )
+          : outOfStock.push(item.id)
+
+        /* se ejecuta solo despues de procesar el ultimo item del carrito */ 
+        if( count === order.items.length) {
+          /* se ejecuta si todos los productos estan en stock */ 
+          if(outOfStock.length === 0) { 
+            addDoc(collection(db,'orders'), order)
+              .then( ({id}) => { batch.commit()
+                  .then( () => onSuccess(id) )
+              })
+          }
+          /* se ejecuta si algún producto no tiene stock */
+          else
+            onError(outOfStock)
+        }
+      })
+  })
 }

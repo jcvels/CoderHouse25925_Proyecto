@@ -1,6 +1,9 @@
 # Historial de cambios
 
 ## Clase 13 | Firebase II | Item Collection II
+- Creo la funcioón `setOrder` para guardar la orden de compra en Firestore.
+- Modifico `Cart.js` y `CartList.js` para optimizar la separación entre la lógica y la visual.
+- Creo `CartForm.js` como formulario para recolectar la información del cliente.
 
 ## Clase 12 | Utilizando Firebase | Item Collection
 - Instalación de `firebase` y creación de `FirebaseService.js` para conectar con Firebase.

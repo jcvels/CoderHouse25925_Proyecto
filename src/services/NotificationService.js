@@ -8,8 +8,8 @@ const Notification = ({severity, message}) => {
         position: 'absolute',
         display: 'flex',
         bottom: '20px',
-        right: '20px',
-        width: '30%',
+        right: '5%',
+        width: '90%',
         zIndex: '5000'
     }
 
@@ -40,7 +40,7 @@ export const NotificationServicesProvider = ({children}) => {
         setSeverity(severity)
         setTimeout(() => {
             setMessage('')
-        }, 5000)
+        }, 7000)
     }
 
     return (

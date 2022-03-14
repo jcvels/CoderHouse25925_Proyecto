@@ -1,28 +1,64 @@
-import { useContext } from 'react';
-import { Row, Col, Card, CardBody, CardTitle, CardHeader, CardFooter } from 'reactstrap';
+import { useContext, useState} from 'react';
+import { Button } from 'reactstrap';
 import CustomAlert from './CustomAlert';
+import CustomSpinner from './CustomSpinner';
 import CartContext from '../context/CartContext';
 import CartList from './CartList';
+import { setOrder } from '../services/FirebaseService'
+import { useNotificationServices } from '../services/NotificationService';
+import { Timestamp } from 'firebase/firestore'
+import CartForm from './CartForm';
 
 function Cart() {
 
     const { cart, removeItem, clear, getTotal } = useContext(CartContext);
+    const [ processing, setProcessing ] = useState(false)
+    const [ buyer, setBuyer ] = useState( {
+        name:'',
+        phone:'',
+        email:'',
+        remarks:''
+    })
+    const setToast = useNotificationServices()
+    const processOrder = () => {
 
-    const processingOrder = () => {
-        let orderObjetc = {
-            buyer:{
-                name:"Jorge Claudio Pauvels",
-                phone:"1134634296",
-                email:"jcvels@uvcoding.com.ar"
-            },
-            items: cart,
-            total: getTotal(),
-            date: new Date()
+        if(buyer.name && buyer.phone && buyer.email) {
+            setProcessing(true)
+
+            const newOrder = {
+                buyer: buyer,
+                items: cart,
+                total: getTotal(),
+                date: Timestamp.fromDate(new Date())
+            }
+
+            setOrder(
+                newOrder, 
+                (id) => {
+                    setToast('success', `Se cargó la orden correctamente. ID = ${id}`)
+                    clear()
+                    setProcessing(false)
+                },
+                (outOfStock) => {
+                    outOfStock.forEach( id => removeItem(id))
+                    setToast('error', `Algunos items no contaban con stock suficiente para procesar la orden. Los eliminamos del carrito, deberas volver a confirmar para continuar.`)
+                    setProcessing(false)
+                }
+            )
         }
-
-        console.log(orderObjetc) // DEBUG !!!!
+        else
+            setToast('error', 'Debe completar la información de contacto para continuar')       
     }
     
+    /* se muestra mientras se procesa la orden */
+    if(processing)
+        return(
+            <section name={'cart'} className='container p-5 text-center'>
+                <CustomSpinner label='Estamos procesando tu orden...' />
+            </section> 
+        )
+
+    /* se muestra si no hay item en el carrito */
     if(cart.length < 1)
         return (
             <section name={'cart'} className='container p-5 text-center'>
@@ -32,31 +68,14 @@ function Cart() {
 
     return (
         <section name={'cart'} className='container p-5 text-center'>
+
+            <CartList cart={cart} onRemove={removeItem} total={getTotal()} />
+            <CartForm setBuyer={setBuyer} />
             
-            <Card className='border-warning text-center'>
-
-                <CardHeader className='bg-warning text-center'>
-                    <CardTitle tag="h5">Detalle de productos</CardTitle>
-                </CardHeader>
-
-                <CardBody>
-                    <CartList cart={cart} onRemove={removeItem} />
-                </CardBody>
-
-                <CardFooter className='text-start bg-white'>
-                    <Row className='text-start'>
-                        <Col className='col-4'>
-                            <span className='btn badge btn-danger me-2' onClick={clear}>Limpiar</span>
-                        </Col>
-                        <Col className='col-4 text-muted text-end'>Total:</Col>
-                        <Col className='col-2 text-danger'>${getTotal()}</Col>
-                        <Col className='col-2 text-danger text-end'>
-                            <span className='btn badge btn-success' onClick={processingOrder}>Confirmar Compra</span>
-                        </Col>
-                    </Row>
-                </CardFooter>
-
-            </Card>
+            <article className='mt-5'>
+                <Button color='danger' className='me-2' onClick={clear}>LIMPIAR CARRITO</Button>
+                <Button color='success' onClick={processOrder}>FINALIZAR LA COMPRA</Button>
+            </article>
 
         </section>
     );

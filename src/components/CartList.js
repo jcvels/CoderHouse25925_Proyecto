@@ -1,22 +1,33 @@
-import { Col, Row } from 'reactstrap'
+import { Row, Col, Card, CardBody, CardTitle, CardHeader, Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import CartItem from "./CartItem"
 
-function CartList({cart, onRemove}) {
+function CartList({cart, onRemove, total}) {
     return (
-        <div>
-            <Row className='text-start'>
-                <Col className='col-2 text-muted' >Cant.</Col>
-                <Col className='col-4 text-muted'>Descripción</Col>
-                <Col className='col-2 text-muted'>Precio Unitario</Col>
-                <Col className='col-2 text-muted'>Subtotal</Col>
-                <Col className='col-2 text-muted'></Col>
-            </Row>
+        <Card className='border-warning text-center'>
+            <CardHeader className='bg-warning text-center'>
+                <CardTitle tag="h5">Detalle de productos</CardTitle>
+            </CardHeader>
 
-            {
-                cart.map( (item) => { return ( <CartItem key={item.id} item={item} onRemove={() => onRemove(item.id)} /> )})
-            }
+            <CardBody>
+                <Row className='text-start'>
+                    <Col className='col-2 text-muted'>Cantidad</Col>
+                    <Col className='col-4 text-muted'>Descripción</Col>
+                    <Col className='col-2 text-muted'>Precio Unitario</Col>
+                    <Col className='col-4 text-muted'>Subtotal</Col>
+                </Row>
 
-        </div>
+                {
+                    cart.map( (item) => { return ( <CartItem key={item.id} item={item} onRemove={() => onRemove(item.id)} /> )})
+                }
+
+                <Row className='text-start mt-3'>
+                    <Col className='col-6'></Col>
+                    <Col className='col-2 text-muted'>Total:</Col>
+                    <Col className='col-4 text-danger'>${total}</Col>
+                </Row>
+
+            </CardBody>
+        </Card>
     )
 }
 
