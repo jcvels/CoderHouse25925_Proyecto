@@ -22,7 +22,7 @@ function ItemDetailContainer() {
             setLoading(true);
         })
 
-    }, [productId]);
+    }, []);
 
     return (
         <section name={'item-detail'} className='container p-5 text-center'>

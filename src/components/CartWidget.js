@@ -1,9 +1,6 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from 'reactstrap';
 import CartContext from '../context/CartContext'
-
-const handleClickDefault = () => { console.log('not-function-defined') }
 
 function CartWidget() {
 

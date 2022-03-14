@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Badge, Button, ButtonGroup } from 'reactstrap';
+import { Button, ButtonGroup } from 'reactstrap';
 
 function ItemCount({ itemCounterStart=0, itemStock=0, itemOnAdd }) {
     

@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 function CategorieItemSpinner() {
     return (
         <NavItem>
-            <NavLink to={'#'} className={"nav-link"} >Cargando...</NavLink>
+            <NavLink to={'#'} className={"nav-link"} >Cargando categorías...</NavLink>
         </NavItem>
     );
 }

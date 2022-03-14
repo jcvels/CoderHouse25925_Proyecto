@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Navbar, Nav, NavItem, Button, Collapse, NavbarToggler } from 'reactstrap';
+import { Navbar, Nav, NavItem, Collapse, NavbarToggler } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { getCategories } from '../services/FirebaseService';
 import CategorieItemButton from './CategorieItemButton';
@@ -14,7 +14,7 @@ function AppNavbar({title}) {
 
     useEffect( () => {
         getCategories( (data) => setCategories(data) )
-    }, [categories]);
+    }, []);
 
     return (
         <Navbar
