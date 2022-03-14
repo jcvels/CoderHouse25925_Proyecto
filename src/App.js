@@ -1,24 +1,27 @@
-import logo from './logo.svg';
+import AppNavbar from './components/Navbar';
+import ItemListContainer from './components/ItemListContainer';
+import ItemDetailContainer from './components/ItemDetailContainer';
+import Cart from './components/Cart';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { CartContextProvider } from './context/CartContext'
+import { NotificationServicesProvider } from './services/NotificationService';
 import './App.css';
-
+ 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          CODEHOUSE REACTJS PROJECT <small>by Jorge Pauvels</small>
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <NotificationServicesProvider>
+        <CartContextProvider>
+          <AppNavbar title='Best-Planes-On-Sale' />
+          <Routes>
+            <Route path='/' element={ <ItemListContainer /> } />
+            <Route path='/category/:categoryName' element={ <ItemListContainer /> } />
+            <Route path='/product/:productId' element={ <ItemDetailContainer /> } />
+            <Route path='/cart/' element={ <Cart /> } />
+          </Routes>
+        </CartContextProvider>
+      </NotificationServicesProvider>
+    </BrowserRouter>
   );
 }
 
