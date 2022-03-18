@@ -1,5 +1,13 @@
 # Historial de cambios
 
+## Entrega final
+- Limpieza de código: eliminar comentarios y log de debugging.
+- Variables de entorno.
+- Optimización del servicio Firebase.
+- Implementaci;on de localStorage en `Cart.js`.
+- Optimización de `CartForm.js`.
+- Agregado de GIF demostración
+
 ## Clase 13 | Firebase II | Item Collection II
 - Creo la funcioón `setOrder` para guardar la orden de compra en Firestore.
 - Modifico `Cart.js` y `CartList.js` para optimizar la separación entre la lógica y la visual.

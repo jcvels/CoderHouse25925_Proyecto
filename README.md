@@ -26,7 +26,8 @@ Tienda desarrollada en ReactJS en el marco del curso.
 - [X] Desafío Clase 12.
 - [X] Implementar LocalStorage para el Cart.
 - [X] Desafío clase 13.
-- [ ] GIF.
+- [X] GIF.
+- [X] Demo Live en Heroku.
 - [X] Proyecto Final.
 
 ## Historial de cambios
