@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Card, CardHeader, CardTitle, CardBody, Form, FormGroup, Label, Input, Row, Col } from 'reactstrap'
+import { Card, CardHeader, CardTitle, CardBody, Form, FormGroup, Label, Input, Row, Col, Button } from 'reactstrap'
 import { useNotificationServices } from '../services/NotificationService';
 
 function CartForm({setBuyer}) {
@@ -11,7 +11,8 @@ function CartForm({setBuyer}) {
     const [ getEmail, setEmail ] = useState('')
     const [ getSecondEmail, setSecondEmail ] = useState('')
     const [ getRemarks, setRemarks ] = useState('')
-    const [ saved, setSaved ] = useState(false) 
+    const [ saved, setSaved ] = useState(false)
+    const [ hidden, setHidden ] = useState(false) 
 
     const handleBuyerForm = (e) => {
         e.preventDefault()
@@ -26,14 +27,8 @@ function CartForm({setBuyer}) {
                     remarks:getRemarks
                 })
 
-                setName('')
-                setSurname('')
-                setPhone('')
-                setEmail('')
-                setSecondEmail('')
-                setRemarks('')
-
                 setSaved(true)
+                setHidden(true)
             }
             else
                 setToast('error','Los correos no coinciden')
@@ -43,7 +38,7 @@ function CartForm({setBuyer}) {
 
     }
 
-    if(saved)
+    if(hidden)
         return(
             <Card className='border-warning text-start mt-5'>
                 <CardHeader className='bg-warning text-center'>
@@ -51,6 +46,7 @@ function CartForm({setBuyer}) {
                 </CardHeader>
                 <CardBody>
                     <p className='lead'>Información de contacto guardada</p>
+                    <Button className='btn-sm' onClick={ () => setHidden(false) }>Ver</Button>
                 </CardBody>
             </Card>
         )
@@ -71,6 +67,7 @@ function CartForm({setBuyer}) {
                                     required
                                     value={getName}
                                     onChange={ ({target}) => setName(target.value) }
+                                    disabled={ saved }
                                 />
                             </Col>
                             <Col className='sm-6'>
@@ -80,6 +77,7 @@ function CartForm({setBuyer}) {
                                     required
                                     value={getSurname}
                                     onChange={ ({target}) => setSurname(target.value) }
+                                    disabled={ saved }
                                 />
                             </Col>
                         </Row>
@@ -91,6 +89,7 @@ function CartForm({setBuyer}) {
                             required
                             value={getPhone}
                             onChange={ ({target}) => setPhone(target.value) }
+                            disabled={ saved }
                         />
                     </FormGroup>
                     <FormGroup>
@@ -102,6 +101,7 @@ function CartForm({setBuyer}) {
                                     required
                                     value={getEmail}
                                     onChange={ ({target}) => setEmail(target.value) }
+                                    disabled={ saved }
                                 />
                             </Col>
                             <Col className='sm-6'>
@@ -111,6 +111,7 @@ function CartForm({setBuyer}) {
                                     required
                                     value={getSecondEmail}
                                     onChange={ ({target}) => setSecondEmail(target.value) }
+                                    disabled={ saved }
                                 />
                             </Col>
                         </Row>
@@ -121,10 +122,15 @@ function CartForm({setBuyer}) {
                             type="text"
                             value={getRemarks}
                             onChange={ ({target}) => setRemarks(target.value) }
+                            disabled={ saved }
                         />
                     </FormGroup>
                     <FormGroup className='text-end'>
-                        <button className='btn btn-primary ms-auto me-1'>Guardar información de contacto</button>
+                        {
+                            saved
+                                && <button className='btn btn-secondary ms-auto' onClick={ () => setSaved(false) }>Editar</button>
+                        }
+                        <button className='btn btn-primary ms-1 me-1'>Guardar información de contacto</button>
                     </FormGroup>
                 </Form>
             </CardBody>
