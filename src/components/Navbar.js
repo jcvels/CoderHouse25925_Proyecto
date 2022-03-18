@@ -5,15 +5,19 @@ import { getCategories } from '../services/FirebaseService';
 import CategorieItemButton from './CategorieItemButton';
 import CartWidget from './CartWidget';
 import CategorieItemSpinner from './CategorieItemSpinner';
+import { useNotificationServices } from '../services/NotificationService';
 
 function AppNavbar({title}) {
 
     const [ menuState, setMenuState] = useState(false);
     const [ categories, setCategories] = useState([]);
     const menuStateChanger = () => setMenuState( !menuState );
+    const setToast = useNotificationServices()
 
     useEffect( () => {
-        getCategories( (data) => setCategories(data) )
+        getCategories()
+            .then( data => setCategories(data) )
+            .catch( error => setToast('error',error) )
     }, []);
 
     return (

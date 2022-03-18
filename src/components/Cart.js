@@ -33,19 +33,19 @@ function Cart() {
                 date: Timestamp.fromDate(new Date())
             }
 
-            setOrder(
-                newOrder, 
-                (id) => {
-                    setToast('success', `Se cargó la orden correctamente. ID = ${id}`)
-                    clear()
-                    setProcessing(false)
-                },
-                (outOfStock) => {
-                    outOfStock.forEach( id => removeItem(id))
-                    setToast('error', `Algunos items no contaban con stock suficiente para procesar la orden. Los eliminamos del carrito, deberas volver a confirmar para continuar.`)
-                    setProcessing(false)
-                }
-            )
+            setOrder(newOrder)
+                .then( ({id, outOfStock}) => {
+                    if(outOfStock.length === 0) {
+                        setToast('success', `Se cargó la orden correctamente. ID = ${id}`)
+                        clear()
+                    }
+                    else {
+                        outOfStock.forEach( id => removeItem(id) )
+                        setToast('error', `Algunos items no contaban con stock suficiente para procesar la orden. Los eliminamos del carrito. Debes volver a confirmar la orden para continuar.`)
+                    }
+                })
+                .catch( error => setToast('error',error) )
+                .finally( () => setProcessing(false) )
         }
         else
             setToast('error', 'Debe completar la información de contacto para continuar')       
