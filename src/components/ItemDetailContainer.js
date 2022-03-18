@@ -29,7 +29,7 @@ function ItemDetailContainer() {
             { 
                 loading 
                     ? <CustomSpinner />
-                    : product
+                    : product.title
                         ? <ItemDetail product={product} />
                         : <CustomAlert label={"El producto no existe"} />
             }

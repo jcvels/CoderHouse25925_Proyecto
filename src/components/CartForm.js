@@ -1,30 +1,46 @@
 import { useState } from 'react'
-import { Card, CardHeader, CardTitle, CardBody, Form, FormGroup, Label, Input } from 'reactstrap'
+import { Card, CardHeader, CardTitle, CardBody, Form, FormGroup, Label, Input, Row, Col } from 'reactstrap'
+import { useNotificationServices } from '../services/NotificationService';
 
 function CartForm({setBuyer}) {
-    
+    const setToast = useNotificationServices()
+   
     const [ getName, setName ] = useState('')
+    const [ getSurname, setSurname ] = useState('')
     const [ getPhone, setPhone ] = useState('')
     const [ getEmail, setEmail ] = useState('')
+    const [ getSecondEmail, setSecondEmail ] = useState('')
     const [ getRemarks, setRemarks ] = useState('')
     const [ saved, setSaved ] = useState(false) 
 
     const handleBuyerForm = (e) => {
         e.preventDefault()
 
-        setBuyer({
-            name:getName,
-            phone:getPhone,
-            email:getEmail,
-            remarks:getRemarks
-        })
+        if(getName && getSurname && getPhone && getEmail) {
+            if( getEmail === getSecondEmail ) {
+                setBuyer({
+                    name:getName,
+                    surname:getSurname,
+                    phone:getPhone,
+                    email:getEmail,
+                    remarks:getRemarks
+                })
 
-        setName('')
-        setPhone('')
-        setEmail('')
-        setRemarks('')
+                setName('')
+                setSurname('')
+                setPhone('')
+                setEmail('')
+                setSecondEmail('')
+                setRemarks('')
 
-        setSaved(true)
+                setSaved(true)
+            }
+            else
+                setToast('error','Los correos no coinciden')
+        }
+        else
+            setToast('error','Debe completar toda la información requerida')
+
     }
 
     if(saved)
@@ -34,7 +50,7 @@ function CartForm({setBuyer}) {
                     <CardTitle tag="h5">Información de contacto</CardTitle>
                 </CardHeader>
                 <CardBody>
-                    <p>Información de contacto guardada</p>
+                    <p className='lead'>Información de contacto guardada</p>
                 </CardBody>
             </Card>
         )
@@ -47,13 +63,26 @@ function CartForm({setBuyer}) {
             <CardBody>
                 <Form onSubmit={handleBuyerForm}>
                     <FormGroup>
-                        <Label>Nombre</Label>
-                        <Input
-                            type="text"
-                            required
-                            value={getName}
-                            onChange={ ({target}) => setName(target.value) }
-                        />
+                        <Row>
+                            <Col className='sm-6'>
+                                <Label>Nombre</Label>
+                                <Input
+                                    type="text"
+                                    required
+                                    value={getName}
+                                    onChange={ ({target}) => setName(target.value) }
+                                />
+                            </Col>
+                            <Col className='sm-6'>
+                                <Label>Apellido</Label>
+                                <Input
+                                    type="text"
+                                    required
+                                    value={getSurname}
+                                    onChange={ ({target}) => setSurname(target.value) }
+                                />
+                            </Col>
+                        </Row>
                     </FormGroup>
                     <FormGroup>
                         <Label>Teléfono</Label>
@@ -65,13 +94,26 @@ function CartForm({setBuyer}) {
                         />
                     </FormGroup>
                     <FormGroup>
-                        <Label>Correo Electrónico</Label>
-                        <Input
-                            type="email"
-                            required
-                            value={getEmail}
-                            onChange={ ({target}) => setEmail(target.value) }
-                        />
+                        <Row>
+                            <Col className='sm-6'>
+                                <Label>Correo Electrónico</Label>
+                                <Input
+                                    type="email"
+                                    required
+                                    value={getEmail}
+                                    onChange={ ({target}) => setEmail(target.value) }
+                                />
+                            </Col>
+                            <Col className='sm-6'>
+                                <Label>Validación Correo Electrónico</Label>
+                                <Input
+                                    type="email"
+                                    required
+                                    value={getSecondEmail}
+                                    onChange={ ({target}) => setSecondEmail(target.value) }
+                                />
+                            </Col>
+                        </Row>
                     </FormGroup>
                     <FormGroup>
                         <Label>Información Adicional</Label>
@@ -81,7 +123,9 @@ function CartForm({setBuyer}) {
                             onChange={ ({target}) => setRemarks(target.value) }
                         />
                     </FormGroup>
-                    <button className='btn btn-primary ms-auto me-1'>Guardar información de contacto</button>
+                    <FormGroup className='text-end'>
+                        <button className='btn btn-primary ms-auto me-1'>Guardar información de contacto</button>
+                    </FormGroup>
                 </Form>
             </CardBody>
         </Card>

@@ -15,6 +15,7 @@ function Cart() {
     const [ processing, setProcessing ] = useState(false)
     const [ buyer, setBuyer ] = useState( {
         name:'',
+        surname:'',
         phone:'',
         email:'',
         remarks:''
@@ -22,7 +23,7 @@ function Cart() {
     const setToast = useNotificationServices()
     const processOrder = () => {
 
-        if(buyer.name && buyer.phone && buyer.email) {
+        if(buyer.name && buyer.surname && buyer.phone && buyer.email) {
             setProcessing(true)
 
             const newOrder = {
