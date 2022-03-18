@@ -2,9 +2,26 @@ import { createContext, useState } from "react";
 
 const Context = createContext();
 
+const setLocalCart = (cart) => {
+    localStorage.setItem( 'localCart', JSON.stringify(cart) )
+}
+
+const getLocalCart = () => {
+    const localCart = localStorage.getItem( 'localCart' )
+    return localCart
+        ? JSON.parse(localCart)
+        : []
+}
+
+console.log( getLocalCart() )
+
 export const CartContextProvider = ({children}) => {
 
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState( getLocalCart() );
+    const saveCart = (cart) => {
+        setLocalCart(cart)
+        setCart(cart)
+    }
 
     /* Agrega un elemento al Cart */
     const addItem = (product, qtty) => {
@@ -14,26 +31,26 @@ export const CartContextProvider = ({children}) => {
                     item.quantity = qtty
                 return item
             })
-            setCart(cartUpdated)
+            saveCart(cartUpdated)
         }
         else {
             const productToAdd = {
                 ...product,
                 quantity:qtty
             }
-            setCart([...cart,productToAdd])
+            saveCart([...cart,productToAdd])
         }
     }
 
     const removeItem = (id) => {
         if( isInCart(id) ) {
             const newCart = cart.filter( (item) => !(item.id === id) )
-            setCart(newCart)
+            saveCart(newCart)
         }
     }
 
     const clear = () => {
-        setCart([]);      
+        saveCart([]);      
     }
 
     const isInCart = (id) => {
