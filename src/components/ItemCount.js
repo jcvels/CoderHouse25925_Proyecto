@@ -32,7 +32,7 @@ function ItemCount({ itemCounterStart=0, itemStock=0, itemOnAdd }) {
                 style={{width:60}}
                 color='outline-warning'
                 onClick={incrementItemCounter}
-                //disabled={ itemStock > 0 ? false : true }
+                disabled={ itemStock > 0 ? false : true }
                 children={'+'}
             />
             <Button
