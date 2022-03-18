@@ -3,7 +3,7 @@ Tienda desarrollada en ReactJS en el marco del curso.
 
 ## Procedimiento para ejecutar la aplicación localmente
 - Clonar el repositorio: `git clone https://github.com/jcvels/tienda-online-pauvels.git`.
-- Crear archivo `.env` en la raiz del proyecto e incluir dentro la variable de entorno provista.
+- Crear archivo `.env` en la raiz del proyecto e incluir dentro las variables de entorno provistas.
 - Instalar dependencias: `npm i`.
 - Ejecutar la aplicación: `npm start`.
 

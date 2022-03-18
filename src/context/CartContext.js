@@ -13,8 +13,6 @@ const getLocalCart = () => {
         : []
 }
 
-console.log( getLocalCart() )
-
 export const CartContextProvider = ({children}) => {
 
     const [cart, setCart] = useState( getLocalCart() );
