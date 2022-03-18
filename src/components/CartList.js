@@ -1,4 +1,4 @@
-import { Row, Col, Card, CardBody, CardTitle, CardHeader, Button, Form, FormGroup, Label, Input } from 'reactstrap'
+import { Row, Col, Card, CardBody, CardTitle, CardHeader } from 'reactstrap'
 import CartItem from "./CartItem"
 
 function CartList({cart, onRemove, total}) {

@@ -5,7 +5,6 @@ import CartContext from '../context/CartContext'
 function CartWidget() {
 
     const { getQuantity } = useContext(CartContext)
-
     const itemsOnCart = getQuantity()
 
     if(itemsOnCart < 1)

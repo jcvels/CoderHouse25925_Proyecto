@@ -5,15 +5,19 @@ import { getCategories } from '../services/FirebaseService';
 import CategorieItemButton from './CategorieItemButton';
 import CartWidget from './CartWidget';
 import CategorieItemSpinner from './CategorieItemSpinner';
+import { useNotificationServices } from '../services/NotificationService';
 
 function AppNavbar({title}) {
 
     const [ menuState, setMenuState] = useState(false);
     const [ categories, setCategories] = useState([]);
     const menuStateChanger = () => setMenuState( !menuState );
+    const setToast = useNotificationServices()
 
     useEffect( () => {
-        getCategories( (data) => setCategories(data) )
+        getCategories()
+            .then( data => setCategories(data) )
+            .catch( error => setToast('error',error) )
     }, []);
 
     return (
@@ -29,26 +33,6 @@ function AppNavbar({title}) {
             </Link>
 
             <NavbarToggler onClick={menuStateChanger} /> 
-            
-            { 
-                /*
-                    TODO: agregar para que no se muestre error en consola:
-                    
-                    Warning: findDOMNode is deprecated in StrictMode. findDOMNode was passed an instance of Transition which is inside StrictMode.
-                    Instead, add a ref directly to the element you want to reference. Learn more about using refs safely here: https://reactjs.org/link/strict-mode-find-node
-                    at div
-                    at Transition (http://localhost:3000/static/js/bundle.js:42586:30)
-                    at Collapse (http://localhost:3000/static/js/bundle.js:53699:5)
-                    at div
-                    at nav
-                    at Navbar (http://localhost:3000/static/js/bundle.js:52209:5)
-                    at AppNavbar (http://localhost:3000/static/js/bundle.js:1267:5)
-                    at Router (http://localhost:3000/static/js/bundle.js:41634:15)
-                    at BrowserRouter (http://localhost:3000/static/js/bundle.js:41114:5)
-                    at App
-                */ 
-            }
-            
             <Collapse navbar isOpen={menuState} >
                 <Nav 
                     className="ms-5 me-auto"
@@ -66,12 +50,6 @@ function AppNavbar({title}) {
 
                 <Nav navbar className='ms-2 me-2 mt-2'>
                     <NavItem>
-                        {/* <Button color="primary" className='ms-1'>
-                            Log-In
-                        </Button>
-                        <Button color="light" className='ms-1'>
-                            Sign-In
-                        </Button> */}
                         <CartWidget />
                     </NavItem>
                 </Nav>
